@@ -1,5 +1,5 @@
 # Sakura
-Sakura — A CLI task management tool for educational purposes
+Sakura — A CLI task management tool 
 
 To-do: 
 

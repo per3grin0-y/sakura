@@ -2,45 +2,59 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 class Main{
+
+    private static Scanner scan = new Scanner(System.in);
+    private static ArrayList<String> taskList = new ArrayList<>();
+    
     static void main(){
 
-        ArrayList<String> taskList = new ArrayList<>();
-        Scanner scan = new Scanner(System.in);
-        
+        System.out.println();
         System.out.println("---------------Sakura---------------");
         System.out.println("----What can I do for you today?----");
         System.out.println("------------------------------------");
-        System.out.println("");
-        
-        System.out.println("Type 1 to add tasks.");       
-        System.out.println("Type anything else to finish the program.");
+        System.out.println();
 
-        System.out.print("Your answer: ");
-        String input = scan.nextLine();
+        while (true){
+            
+            // To-do: Make a method for menu display
+            System.out.println("--------------Menu------------------");
+            System.out.println("Type 1 to add tasks.");
+            System.out.println("Type 2 to show tasks.");       
+            System.out.println("Type any other number to end the program.");
+            
+            // To-do: exception handling
+            System.out.print("Your answer: ");
+            int  input = Integer.parseInt(scan.nextLine());
+            System.out.println("------------------------------------");
+            System.out.println();
 
-        // Task creation 
-        // To-do: Make this a method
-        if (input.equals("1")){
-            boolean addMore = true;
-            while (addMore){ 
-                System.out.println("What is your task?");
-                System.out.print("Task: ");
-                taskList.add(scan.nextLine());
-                System.out.println("");
-
-                System.out.print("Do you want to add more tasks? Type 'y' if you do: ");
-                addMore  = scan.nextLine().equals("y");
-                System.out.println("");
-            }
-        } else {
-            return;
+            switch (input){
+                case 1:
+                    addTasks();
+                    break;
+                case 2:
+                    // To-do: Make task display a method
+                    System.out.println("Your tasks are:");
+                    for (int i = 0; i < taskList.size(); i++){
+                        System.out.println((i+1) + ". " + taskList.get(i));
+                    }
+                    System.out.println();
+                    break;
+                default:
+                    return;
+            }   
         }
+    }
 
-        // Display
-        // To-do: Make this a method
-        System.out.println("Your tasks were:");
-        for (String task: taskList){
-            System.out.println(task);
+    private static void addTasks(){
+
+        boolean addMore = true;
+        while (addMore){
+            System.out.print("Add task: ");
+            taskList.add(scan.nextLine());
+            System.out.print("Done! If you want to keep adding, type 'y': ");
+            addMore = scan.nextLine().equals("y");
+            System.out.println();
         }
     }
 }
